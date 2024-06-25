@@ -1,10 +1,8 @@
-use clap::{command, value_parser, Arg, ArgAction};
+use clap::{command, value_parser, Arg};
 use core::net::SocketAddr;
 
 #[tokio::main(flavor = "multi_thread")]
 async fn main() {
-    println!("Hello, world!");
-
     let default_port = "51820";
 
     let args = command!()
@@ -57,13 +55,18 @@ async fn main() {
                 .value_name("WG_ADDRESSES_MASK")
                 .required(false),
         )
+        .arg(
+            Arg::new("network-prefix")
+                .short('n')
+                .long_help("network prefix")
+                .value_name("NETWORK_PREFIX")
+                .required(true),
+        )
         .get_matches();
 
     // println!("{:?}", args);
 
     let server_endpoint_addr = args.get_one::<String>("wireguard-server-endpoint").unwrap();
-
-    println!("server_endpoint: {:?}", server_endpoint_addr);
 
     let server_endpoint: SocketAddr = server_endpoint_addr.parse().unwrap();
 
@@ -88,22 +91,28 @@ async fn main() {
         .get_one::<String>("wireguard-client-addresses-mask")
         .map(|x| x.split(',').map(|x| x.to_string()).collect());
 
-    return;
-    // let server_public_key = "N9ZPcCtSJJQIp/GtfD5+EAiNQlyABe06GPEaibKtmws=".to_string();
-    // let client_private_key = "0PPBFCQ+p2OwJBPbw+OrYecb6pKp4DqIDT0GP4EIsF4=".to_string();
-    // let client_address = "10.33.0.33".to_string();
-    // let client_port = Some(12345);
-    // let client_addresses_maks = Some(vec!["10.33.0.0/16".to_string()]);
+    let network_prefix: u8 = args
+        .get_one::<String>("network-prefix")
+        .unwrap()
+        .parse()
+        .unwrap();
 
-    let result = wireguard_simple_rust_manager::connect_to_wireguard(
+    println!("server_endpoint: {:?}", server_endpoint_addr);
+    println!("server_public_key: {:?}", server_public_key);
+    println!("client_private_key: {:?}", client_private_key);
+    println!("client_address: {:?}", client_address);
+    println!("client_port: {:?}", client_port);
+    println!("client_addresses_maks: {:?}", client_addresses_maks);
+    println!("network_prefix: {:?}", network_prefix);
+
+    let _ = wireguard_simple_rust_manager::routine_connect_to_wireguard(
         server_endpoint,
         server_public_key,
         client_private_key,
         client_address,
         Some(client_port),
         client_addresses_maks,
+        network_prefix,
     )
     .await;
-
-    assert!(result.is_ok());
 }

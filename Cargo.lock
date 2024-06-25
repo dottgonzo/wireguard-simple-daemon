@@ -928,9 +928,9 @@ dependencies = [
 
 [[package]]
 name = "wireguard_simple_rust_manager"
-version = "0.0.0"
+version = "0.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8a8919f48dd706f90b0bcc0ae6771a3fac262515e8536cb98af33e0cf37cee7c"
+checksum = "0440ec88a995c90fb2fb1b1cff7dc37c99de790cbfd8e85b5d4b23be21dbce89"
 dependencies = [
  "defguard_wireguard_rs",
  "rust-simple-ping",
