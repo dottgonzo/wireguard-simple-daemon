@@ -6,7 +6,7 @@ async fn main() {
     let default_port = "51820";
 
     let args = command!()
-        .about("update main embedded app")
+        .about("start wireguard daemon")
         .version(env!("CARGO_PKG_VERSION"))
         .arg(
             Arg::new("wireguard-server-endpoint")
