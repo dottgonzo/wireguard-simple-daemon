@@ -1,6 +1,6 @@
 [package]
 name = "wireguard-simple-daemon"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
 authors = ["Dario Caruso"]
 description = "simple crate for wireguard connection daemon"
@@ -10,6 +10,6 @@ repository = "https://github.com/dottgonzo/wireguard-simple-daemon"
 
 
 [dependencies]
-wireguard_simple_rust_manager = { version = "0.0.3" }
+wireguard_simple_rust_manager = { version = "0.0.4" }
 tokio = { version = "1.33.0", features = ["macros","rt-multi-thread","time","process"] }
 clap = { version = "4.4.7", features = ["cargo"] }
