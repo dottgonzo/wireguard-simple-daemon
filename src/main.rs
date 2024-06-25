@@ -88,7 +88,7 @@ async fn main() {
         .to_owned();
 
     let client_addresses_masks: Option<Vec<String>> = args
-        .get_one::<String>("wireguard-client-addresses-mask")
+        .get_one::<String>("wireguard-client-addresses-masks")
         .map(|x| x.split(',').map(|x| x.to_string()).collect());
 
     let network_prefix: u8 = args
