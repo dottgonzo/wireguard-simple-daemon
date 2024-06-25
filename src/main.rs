@@ -26,7 +26,7 @@ async fn main() {
         )
         .arg(
             Arg::new("wireguard-client-private-key")
-                .short('p')
+                .short('c')
                 .long_help("wireguard client private key")
                 .value_name("WG_PRIVATE_KEY")
                 .value_parser(value_parser!(String))
@@ -42,16 +42,16 @@ async fn main() {
         )
         .arg(
             Arg::new("wireguard-client-port")
-                .short('o')
+                .short('p')
                 .long_help("wireguard client port")
                 .value_name("WG_PORT")
                 .default_value(default_port)
                 .value_parser(value_parser!(u32)),
         )
         .arg(
-            Arg::new("wireguard-client-addresses-mask")
+            Arg::new("wireguard-client-addresses-masks")
                 .short('m')
-                .long_help("wireguard client addresses mask")
+                .long_help("wireguard client addresses masks")
                 .value_name("WG_ADDRESSES_MASK")
                 .required(false),
         )
@@ -87,7 +87,7 @@ async fn main() {
         .unwrap()
         .to_owned();
 
-    let client_addresses_maks: Option<Vec<String>> = args
+    let client_addresses_masks: Option<Vec<String>> = args
         .get_one::<String>("wireguard-client-addresses-mask")
         .map(|x| x.split(',').map(|x| x.to_string()).collect());
 
@@ -102,7 +102,7 @@ async fn main() {
     println!("client_private_key: {:?}", client_private_key);
     println!("client_address: {:?}", client_address);
     println!("client_port: {:?}", client_port);
-    println!("client_addresses_maks: {:?}", client_addresses_maks);
+    println!("client_addresses_masks: {:?}", client_addresses_masks);
     println!("network_prefix: {:?}", network_prefix);
 
     let _ = wireguard_simple_rust_manager::routine_connect_to_wireguard(
@@ -111,7 +111,7 @@ async fn main() {
         client_private_key,
         client_address,
         Some(client_port),
-        client_addresses_maks,
+        client_addresses_masks,
         network_prefix,
     )
     .await;

@@ -583,9 +583,9 @@ checksum = "7a66a03ae7c801facd77a29370b4faec201768915ac14a721ba36f20bc9c209b"
 
 [[package]]
 name = "rust-simple-ping"
-version = "0.0.1"
+version = "0.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "634810b66e0dfbfb54d6fbef465745baed6756f846dc310ca900997013ec6cf8"
+checksum = "f18ed5be8d3568f47c244857c0cf13100937da1f7978620bd651e2c14a65064b"
 dependencies = [
  "surge-ping",
 ]
@@ -928,9 +928,9 @@ dependencies = [
 
 [[package]]
 name = "wireguard_simple_rust_manager"
-version = "0.0.4"
+version = "0.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f8c742cc53905df569c734fd1df526f89fccde96716b31a1f3c21dac5ba8f70d"
+checksum = "41238540357d94d3dd3cd56f4f810afb94ad1a0a2158ea5444201fbfbd218276"
 dependencies = [
  "defguard_wireguard_rs",
  "rust-simple-ping",
